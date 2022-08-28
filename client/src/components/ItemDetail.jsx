@@ -76,7 +76,8 @@ const ItemDetail = props => {
               container
               direction='row'
               spacing={3}
-              sx={{ padding: '30px' }}
+              backgroundColor='darkslategrey'
+              sx={{ padding: '30px', margin: '30px 0 10px 0' }}
             >
               <Grid item xs={6}>
                 <MainImage
