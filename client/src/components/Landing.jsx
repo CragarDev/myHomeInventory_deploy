@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 
 // Css
 import '../App.css'
@@ -12,8 +13,6 @@ import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import Paper from '@mui/material/Paper'
-
-import TestProject from '../utils/TestProject'
 
 const theme = createTheme({
   palette: {
@@ -31,6 +30,12 @@ const theme = createTheme({
 })
 
 const Register = props => {
+  const history = useHistory()
+
+  const TestProjectLogin = () => {
+    // console.log('test project login')
+    history.push('/login')
+  }
   return (
     <>
       <div
@@ -87,6 +92,19 @@ const Register = props => {
                     to enter!
                   </Typography>
 
+                  <Typography>
+                    <Button
+                      type='submit'
+                      variant='contained'
+                      sx={{ mt: 3, mb: 2, mx: 2 }}
+                      color='primary'
+                      // href='/logIn'
+                      onClick={() => TestProjectLogin()}
+                    >
+                      Click to Login as Test User
+                    </Button>
+                  </Typography>
+
                   <Box sx={{ mt: 1 }}>
                     <Grid
                       sx={{ mt: 1, mb: 2 }}
@@ -116,7 +134,6 @@ const Register = props => {
                 </Box>
               </Container>
             </Paper>
-            <TestProject />
           </ThemeProvider>
         </div>
       </div>

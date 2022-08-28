@@ -27,6 +27,33 @@ export default function LogIn (props) {
 
   const history = useHistory()
 
+  const testLoginHandler = () => {
+    const formInfo = {
+      email: 'ts@test.com',
+      password: 'test1234'
+    }
+
+    axios
+      .post('http://localhost:8000/api/user/login', formInfo, {
+        withCredentials: true
+      })
+      .then(res => {
+        console.log('LOGIN RESPONSE__res.data', res.data)
+        if (res.data.error) {
+          console.log('ERROR__res.data.error', res.data.error)
+          setErrors(res.data.error.errors)
+        } else {
+          setEmail('')
+          setPassword('')
+          setLoggedInUserToggle(!loggedInUserToggle)
+          history.push('/dashboard')
+        }
+      })
+      .catch(err => {
+        console.log('LOGIN FORM ERROR__err', err)
+      })
+  }
+
   const loginHandler = event => {
     event.preventDefault()
     // console.log('email', email)
@@ -125,6 +152,34 @@ export default function LogIn (props) {
             <Typography component='h1' variant='h5'>
               Please Login or Sign up for access!
             </Typography>
+            <Box
+              sx={{
+                m: 2,
+                p: 2,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                backgroundColor: 'red',
+                color: 'white',
+                fontWeight: 'bold'
+              }}
+            >
+              <Typography component='h1' variant='h5'>
+                You can use the testing login credentials:
+              </Typography>
+              <Button
+                sx={{
+                  mt: 1,
+                  fontSize: '1.5rem',
+                  backgroundColor: 'rgb(85, 108, 214)',
+                  color: 'white'
+                }}
+                color='primary'
+                onClick={testLoginHandler}
+              >
+                ts@test.com || pwd: test1234
+              </Button>
+            </Box>
             <Box
               component='form'
               width='100%'
