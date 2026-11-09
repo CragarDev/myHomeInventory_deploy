@@ -1,7 +1,7 @@
 // import mongoose
 const mongoose = require("mongoose");
 
-console.log(":::::: MONGOOSE CONFIG :::::::");
+
 
 // get the .env file
 require("dotenv").config();
