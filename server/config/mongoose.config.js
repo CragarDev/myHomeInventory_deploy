@@ -19,10 +19,13 @@ const uri = `mongodb+srv://${db_login}:${db_pwd}@dojo-mean-may.ckqcp.mongodb.net
 // mongodb+srv://cragardev:<password>@dojo-mean-may.ckqcp.mongodb.net/?retryWrites=true&w=majority
 
 // mongoose connection here
+
 mongoose
   .connect(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
   .then(() => console.log(`Ok ${userName}, We have now established a connection to the database: ${db_name}`))
-  .catch((err) => console.log(`Uh-ooh, ${userName}, Something has gone wrong when connecting to the database: ${db_name}, you had better check on it. look here: ${db_login}, or ${db_pwd} `, err));
+  .catch((err) => {
+    console.error("MongoDB connection failed. Check database connection settings.");
+  });
